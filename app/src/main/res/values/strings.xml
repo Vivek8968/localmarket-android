@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Local Market</string>
+    
+    <!-- Auth Strings -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="verify">Verify</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_apple">Continue with Apple</string>
+    <string name="or">OR</string>
+    <string name="send_otp">Send OTP</string>
+    
+    <!-- Home Screen -->
+    <string name="nearby_shops">Nearby Shops</string>
+    <string name="search_shops">Search shops or products</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="distance">Distance</string>
+    <string name="view_details">View Details</string>
+    <string name="contact_on_whatsapp">Contact on WhatsApp</string>
+    <string name="refresh">Refresh</string>
+    <string name="share">Share</string>
+    
+    <!-- Shop Detail -->
+    <string name="shop_details">Shop Details</string>
+    <string name="products">Products</string>
+    <string name="address">Address</string>
+    <string name="contact">Contact</string>
+    <string name="search_products">Search products</string>
+    <string name="sort_by">Sort by</string>
+    <string name="price_low_to_high">Price: Low to High</string>
+    <string name="price_high_to_low">Price: High to Low</string>
+    <string name="newest_first">Newest First</string>
+    <string name="shop_banner">Shop Banner</string>
+    <string name="shop_has_no_whatsapp">This shop has no WhatsApp contact</string>
+    <string name="whatsapp_not_installed">WhatsApp is not installed on your device</string>
+    
+    <!-- Product Detail -->
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="product_details">Product Details</string>
+    <string name="price">Price</string>
+    <string name="category">Category</string>
+    <string name="in_stock">In Stock</string>
+    <string name="out_of_stock">Out of Stock</string>
+    <string name="only_left">Only %1$d left</string>
+    <string name="product_image">Product Image</string>
+    <string name="description">Description</string>
+    <string name="specifications">Specifications</string>
+    <string name="sold_by">Sold By</string>
+    <string name="in_stock_count">In Stock: %1$d</string>
+    <string name="added_to_cart">Added to cart</string>
+    
+    <!-- Vendor -->
+    <string name="vendor_dashboard">Vendor Dashboard</string>
+    <string name="my_shop">My Shop</string>
+    <string name="my_products">My Products</string>
+    <string name="your_products">Your Products</string>
+    <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="edit_shop">Edit Shop</string>
+    <string name="create_shop">Create Shop</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="shop_address">Shop Address</string>
+    <string name="shop_phone">Shop Phone</string>
+    <string name="shop_whatsapp">Shop WhatsApp</string>
+    <string name="whatsapp_number_optional">WhatsApp Number (Optional)</string>
+    <string name="upload_banner">Upload Banner</string>
+    <string name="change_banner">Change Banner</string>
+    <string name="save">Save</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="stock_quantity">Stock Quantity</string>
+    <string name="create_your_shop">Create Your Shop</string>
+    <string name="create_shop_subtitle">Set up your shop details to start selling products</string>
+    <string name="edit_shop_details">Edit Shop Details</string>
+    <string name="shop_created_successfully">Shop created successfully</string>
+    <string name="shop_updated_successfully">Shop updated successfully</string>
+    <string name="product_updated_successfully">Product updated successfully</string>
+    <string name="add_product_from_catalog">Add Product from Catalog</string>
+    <string name="product_catalog">Product Catalog</string>
+    <string name="search_catalog">Search catalog</string>
+    <string name="no_catalog_items_found">No catalog items found</string>
+    <string name="no_products_added">No products added yet</string>
+    
+    <!-- Error Messages -->
+    <string name="error_location_permission">Location permission is required to show nearby shops</string>
+    <string name="error_network">Network error. Please check your connection</string>
+    <string name="error_login">Login failed. Please try again</string>
+    <string name="error_invalid_otp">Invalid OTP. Please try again</string>
+    <string name="shop_name_required">Shop name is required</string>
+    <string name="address_required">Address is required</string>
+    <string name="price_required">Price is required</string>
+    <string name="stock_required">Stock quantity is required</string>
+    <string name="price_must_be_positive">Price must be greater than 0</string>
+    <string name="stock_cannot_be_negative">Stock cannot be negative</string>
+    <string name="invalid_price">Invalid price</string>
+    <string name="invalid_stock">Invalid stock quantity</string>
+    
+    <!-- Placeholders -->
+    <string name="google_maps_key">YOUR_MAPS_API_KEY</string>
+</resources>

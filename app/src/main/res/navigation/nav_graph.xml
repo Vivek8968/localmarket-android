@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Auth Flow -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.localmarket.app.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otpVerificationFragment"
+        android:name="com.localmarket.app.ui.auth.OtpVerificationFragment"
+        android:label="OTP Verification"
+        tools:layout="@layout/fragment_otp_verification">
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_otpVerificationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Main Flow -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.localmarket.app.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_shopDetailFragment"
+            app:destination="@id/shopDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_vendorDashboardFragment"
+            app:destination="@id/vendorDashboardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/shopDetailFragment"
+        android:name="com.localmarket.app.ui.shop.ShopDetailFragment"
+        android:label="Shop Details"
+        tools:layout="@layout/fragment_shop_detail">
+        <argument
+            android:name="shopId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_shopDetailFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.localmarket.app.ui.shop.ProductDetailFragment"
+        android:label="Product Details"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+        <argument
+            android:name="shopId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- Vendor Flow -->
+    <fragment
+        android:id="@+id/vendorDashboardFragment"
+        android:name="com.localmarket.app.ui.vendor.VendorDashboardFragment"
+        android:label="Vendor Dashboard"
+        tools:layout="@layout/fragment_vendor_dashboard">
+        <action
+            android:id="@+id/action_vendorDashboardFragment_to_editShopFragment"
+            app:destination="@id/editShopFragment" />
+        <action
+            android:id="@+id/action_vendorDashboardFragment_to_createShopFragment"
+            app:destination="@id/createShopFragment" />
+        <action
+            android:id="@+id/action_vendorDashboardFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <action
+            android:id="@+id/action_vendorDashboardFragment_to_editProductFragment"
+            app:destination="@id/editProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editShopFragment"
+        android:name="com.localmarket.app.ui.vendor.EditShopFragment"
+        android:label="Edit Shop"
+        tools:layout="@layout/fragment_edit_shop">
+        <argument
+            android:name="shopId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createShopFragment"
+        android:name="com.localmarket.app.ui.vendor.CreateShopFragment"
+        android:label="Create Shop"
+        tools:layout="@layout/fragment_create_shop" />
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.localmarket.app.ui.vendor.CatalogFragment"
+        android:label="Product Catalog"
+        tools:layout="@layout/fragment_catalog" />
+
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="com.localmarket.app.ui.vendor.EditProductFragment"
+        android:label="Edit Product"
+        tools:layout="@layout/fragment_edit_product">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewCategoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCategoryTitle">
+
+        <RadioButton
+            android:id="@+id/radioButtonAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/all" />
+
+        <RadioButton
+            android:id="@+id/radioButtonElectronics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/electronics" />
+
+        <RadioButton
+            android:id="@+id/radioButtonClothing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/clothing" />
+
+        <RadioButton
+            android:id="@+id/radioButtonHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/food" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/other" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewSortTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/sort_by"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupCategory" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupSort"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSortTitle">
+
+        <RadioButton
+            android:id="@+id/radioButtonPriceLowToHigh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/price_low_to_high" />
+
+        <RadioButton
+            android:id="@+id/radioButtonPriceHighToLow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price_high_to_low" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNameAToZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_a_to_z" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNameZToA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name_z_to_a" />
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
