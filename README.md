@@ -1,120 +1,137 @@
-# Local Market Android App
+# Local Market App
 
-A professional, scalable Android application for the "Organised Local Market" project. This app connects local shops with customers in their vicinity, allowing users to discover nearby shops, browse products, and contact vendors directly.
+A hyperlocal marketplace application that connects local shops with customers in their vicinity.
+
+## Components
+
+1. **Android App**: Native Android application built with Kotlin
+2. **Backend**: FastAPI microservices
+3. **Frontend**: React web application
+
+## Setup Instructions
+
+### Starting the Services
+
+1. Run the start_services.sh script to start both backend and frontend:
+
+```bash
+./start_services.sh
+```
+
+This will start:
+- Backend services:
+  - User service (authentication, registration)
+  - Seller service (shop management)
+  - Customer service (orders, cart)
+  - Catalog service (products, categories)
+  - Admin service (administration)
+- Frontend on port 12001 (https://work-2-bvemjqssescmnplf.prod-runtime.all-hands.dev)
+
+The backend services are accessible through their respective endpoints:
+- User service: https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/api/users
+- Seller service: https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/api/sellers
+- Customer service: https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/api/customers
+- Catalog service: https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/api/catalog
+- Admin service: https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/api/admin
+
+### Building and Downloading the Android APK
+
+1. Run the build_apk.sh script to build the Android APK:
+
+```bash
+./build_apk.sh
+```
+
+This will create an APK file at `/workspace/apk/localmarket.apk`.
+
+2. To create a download page for the APK, run:
+
+```bash
+./download_apk.sh
+```
+
+This will create a download page at:
+https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev/view?path=/workspace/apk/download.html
+
+3. Alternatively, you can serve the APK using a simple HTTP server:
+
+```bash
+python /workspace/serve_apk.py
+```
+
+This will start a server at port 12000, and you can access the APK at:
+https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev
+
+You can access either of these pages from your Android device to download and install the APK directly.
 
 ## Features
 
 ### Customer Features
-- **Home Screen**: Lists all shops sorted by real-time distance from the user
-- **Shop Details**: View shop information, products, and contact options
-- **Product Details**: Detailed product information with specifications
-- **Search & Filter**: Find shops and products easily
-- **WhatsApp Integration**: Contact shops directly via WhatsApp
+- Browse nearby shops
+- View shop details and products
+- Add products to cart
+- Place orders
+- Track order status
+- Contact shops via WhatsApp
 
 ### Vendor Features
-- **Vendor Dashboard**: Manage shop and products
-- **Shop Management**: Create and edit shop details
-- **Product Management**: Add, edit, and remove products
-- **Catalog Integration**: Add products from a preloaded catalog of electronics items
+- Create and manage shop profile
+- Add and manage products
+- View and manage orders
+- Update order status
 
-### Authentication
-- Mobile OTP login via Firebase Auth
-- Gmail login
-- Apple login (future-ready)
+## Testing the App
 
-## Technical Details
+1. Install the APK on your Android device
+2. Register as a customer or vendor
+3. If registering as a vendor, create a shop and add products
+4. If registering as a customer, browse shops and products, and place orders
 
-### Architecture
-- **Pattern**: MVVM (Model-View-ViewModel)
-- **Language**: Kotlin
-- **Minimum SDK**: API 21 (Android 5.0)
-- **Target SDK**: API 33 (Android 13)
+## Troubleshooting
 
-### Libraries & Dependencies
-- **UI Components**: AndroidX, Material Design Components
-- **Navigation**: Navigation Component with SafeArgs
-- **Dependency Injection**: Koin
-- **Networking**: Retrofit, OkHttp
-- **Image Loading**: Glide
-- **Authentication**: Firebase Authentication
-- **Location**: Google Play Services Location
-- **Async Operations**: Kotlin Coroutines, LiveData
+If you encounter any issues:
 
-## Setup Instructions
-
-### Prerequisites
-- Android Studio Arctic Fox (2021.3.1) or newer
-- JDK 11 or newer
-- Android SDK with API 33 platform
-
-### Building the Project
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/localmarket-android.git
-   ```
-
-2. Open the project in Android Studio
-
-3. Configure Firebase:
-   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-   - Add an Android app to your Firebase project
-   - Download the `google-services.json` file and place it in the app directory
-   - Enable Phone Authentication and Google Sign-In in the Firebase Authentication section
-
-4. Configure Google Maps API:
-   - Get a Google Maps API key from [Google Cloud Console](https://console.cloud.google.com/)
-   - Add the API key to `local.properties`:
-     ```
-     MAPS_API_KEY=your_api_key_here
-     ```
-
-5. Build the project:
-   - Select `Build > Make Project` from the menu
-   - Or run `./gradlew assembleDebug` from the command line
-
-### Running the App
-- Connect an Android device or use an emulator
-- Select `Run > Run 'app'` from the menu
-- Or run `./gradlew installDebug` from the command line
-
-## API Integration
-
-The app connects to a FastAPI backend service. The API endpoints are defined in the `ApiService.kt` interface.
-
-Key API features:
-- Authentication and user management
-- Shop listing and details
-- Product catalog and management
-- Vendor shop management
-
-## Project Structure
-
-```
-app/
-├── src/
-│   ├── main/
-│   │   ├── java/com/localmarket/app/
-│   │   │   ├── data/
-│   │   │   │   ├── api/          # API service interfaces
-│   │   │   │   ├── model/        # Data models
-│   │   │   │   └── repository/   # Repository classes
-│   │   │   ├── di/               # Dependency injection modules
-│   │   │   ├── ui/               # UI components
-│   │   │   │   ├── auth/         # Authentication screens
-│   │   │   │   ├── home/         # Home screen
-│   │   │   │   ├── shop/         # Shop details screens
-│   │   │   │   └── vendor/       # Vendor management screens
-│   │   │   └── utils/            # Utility classes
-│   │   └── res/                  # Resources
-│   └── test/                     # Unit tests
-└── build.gradle                  # App-level build file
+1. Check the backend logs for a specific service:
+```bash
+cd /workspace/localmarket/hyperlocalbymanus
+python run_service.py user --log-level debug  # Replace 'user' with the service name
 ```
 
-## License
+2. Check the frontend logs:
+```bash
+cd /workspace/localmarket/localmarket-frontend
+npm run dev
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+3. Rebuild the Android APK:
+```bash
+./build_apk.sh
+```
 
-## Acknowledgments
+4. Common issues and solutions:
 
-- Backend API: [hyperlocalbymanus](https://github.com/Vivek8968/hyperlocalbymanus.git)
-- Frontend Web: [localmarket-frontend](https://github.com/Vivek8968/localmarket-frontend.git)
+   a. **API Connection Issues**: Make sure the backend services are running and the Android app is using the correct API URL.
+   
+   b. **Database Issues**: The backend is configured to use SQLite for simplicity. Check if the database file exists and has the correct permissions.
+   
+   c. **Google Maps Issues**: Ensure the Google Maps API key is correctly set in the Android app.
+   
+   d. **Authentication Issues**: If you can't log in, try registering a new account or check the user service logs.
+   
+   e. **APK Installation Issues**: Make sure your Android device allows installation from unknown sources.
+
+## Fixed Issues
+
+1. Updated API URL configuration in NetworkModule.kt
+2. Fixed network security configuration for proper API access
+3. Updated Google Maps API key
+4. Fixed keystore file location for app signing
+5. Modified AndroidManifest.xml to allow cleartext traffic
+6. Updated backend .env file to use SQLite
+7. Fixed frontend configuration with correct API URL
+8. Fixed type mismatch issues in ShopRepository.kt
+9. Added missing resources (icons, colors, strings)
+10. Fixed adapter position issues
+11. Added proper price formatting for different numeric types
+12. Fixed shop distance formatting
+13. Updated ViewModelModule.kt with proper dependencies
