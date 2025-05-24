@@ -108,7 +108,7 @@ class ProductDetailFragment : Fragment(), MenuProvider {
                     // Update UI with product details
                     binding.apply {
                         textViewProductName.text = product.name
-                        textViewProductPrice.text = formatPrice(product.price)
+                        textViewProductPrice.text = product.price.formatPrice()
                         textViewProductStock.text = getString(R.string.in_stock_count, product.stock)
                         
                         // Description
@@ -132,7 +132,12 @@ class ProductDetailFragment : Fragment(), MenuProvider {
                             textViewSpecificationsTitle.visibility = View.VISIBLE
                             textViewProductSpecifications.visibility = View.VISIBLE
                             divider3.visibility = View.VISIBLE
-                            textViewProductSpecifications.text = product.specifications
+                            
+                            // Format specifications as a string
+                            val specsText = product.specifications.entries.joinToString("\n") { (key, value) ->
+                                "$key: $value"
+                            }
+                            textViewProductSpecifications.text = specsText
                         }
                         
                         // Load product image
@@ -207,7 +212,7 @@ class ProductDetailFragment : Fragment(), MenuProvider {
             if (resource is Resource.Success) {
                 val product = resource.data
                 val shareText = """
-                    Check out ${product.name} at ${formatPrice(product.price)}
+                    Check out ${product.name} at ${product.price.formatPrice()}
                     
                     ${product.description ?: ""}
                     

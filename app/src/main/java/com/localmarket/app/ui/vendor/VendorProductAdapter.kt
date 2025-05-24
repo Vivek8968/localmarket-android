@@ -33,14 +33,14 @@ class VendorProductAdapter(
         
         init {
             binding.buttonEdit.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onEditClicked(getItem(position))
                 }
             }
             
             binding.imageViewDelete.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onDeleteClicked(getItem(position))
                 }
@@ -50,7 +50,7 @@ class VendorProductAdapter(
         fun bind(product: Product) {
             binding.apply {
                 textViewProductName.text = product.name
-                textViewProductPrice.text = formatPrice(product.price)
+                textViewProductPrice.text = product.price.formatPrice()
                 textViewProductStock.text = "Stock: ${product.stock}"
                 
                 // Load product image

@@ -16,4 +16,13 @@ data class Shop(
     @SerializedName("owner_id")
     val ownerId: String,
     val distance: Double? = null
-)
+) {
+    val distanceFormatted: String
+        get() = distance?.let {
+            if (it < 1.0) {
+                "${(it * 1000).toInt()} m"
+            } else {
+                String.format("%.1f km", it)
+            }
+        } ?: ""
+}

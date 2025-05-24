@@ -13,6 +13,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.localmarket.app.R
 import com.localmarket.app.databinding.ActivityMainBinding
+import com.localmarket.app.utils.showSnackbar
 
 class MainActivity : AppCompatActivity() {
     

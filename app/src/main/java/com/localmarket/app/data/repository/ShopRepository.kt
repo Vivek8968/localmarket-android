@@ -13,6 +13,121 @@ class ShopRepository(
     private val locationHelper: LocationHelper
 ) {
     
+    // Get vendor shop
+    suspend fun getVendorShop(): Resource<Shop> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiService.getVendorShop()
+                
+                if (response.success && response.data != null) {
+                    Resource.Success(response.data)
+                } else {
+                    Resource.Error(response.message ?: "Failed to fetch vendor shop")
+                }
+            } catch (e: Exception) {
+                Resource.Error(e.message ?: "Failed to fetch vendor shop")
+            }
+        }
+    }
+    
+    // Get vendor products
+    suspend fun getVendorProducts(): Resource<List<Product>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = apiService.getVendorProducts()
+                
+                if (response.success && response.data != null) {
+                    Resource.Success(response.data)
+                } else {
+                    Resource.Error(response.message ?: "Failed to fetch vendor products")
+                }
+            } catch (e: Exception) {
+                Resource.Error(e.message ?: "Failed to fetch vendor products")
+            }
+        }
+    }
+    
+    // Add product from catalog
+    suspend fun addProductFromCatalog(catalogItemId: String, price: Double, stock: Int): Resource<Product> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val data = mapOf(
+                    "catalog_item_id" to catalogItemId,
+                    "price" to price,
+                    "stock" to stock
+                )
+                
+                val response = apiService.addProductFromCatalog(data)
+                
+                if (response.success && response.data != null) {
+                    Resource.Success(response.data)
+                } else {
+                    Resource.Error(response.message ?: "Failed to add product")
+                }
+            } catch (e: Exception) {
+                Resource.Error(e.message ?: "Failed to add product")
+            }
+        }
+    }
+    
+    // Update shop details
+    suspend fun updateShopDetails(
+        name: String,
+        address: String,
+        whatsappNumber: String?,
+        bannerImage: String?
+    ): Resource<Shop> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val data = mapOf<String, Any>(
+                    "name" to name,
+                    "address" to address,
+                    "whatsapp_number" to (whatsappNumber ?: ""),
+                    "banner_image" to (bannerImage ?: "")
+                )
+                
+                val response = apiService.updateVendorShop(data)
+                
+                if (response.success && response.data != null) {
+                    Resource.Success(response.data)
+                } else {
+                    Resource.Error(response.message ?: "Failed to update shop details")
+                }
+            } catch (e: Exception) {
+                Resource.Error(e.message ?: "Failed to update shop details")
+            }
+        }
+    }
+    
+    // Create vendor shop
+    suspend fun createVendorShop(
+        name: String,
+        address: String,
+        whatsappNumber: String?,
+        bannerImage: String?
+    ): Resource<Shop> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val data = mapOf<String, Any>(
+                    "name" to name,
+                    "address" to address,
+                    "whatsapp_number" to (whatsappNumber ?: ""),
+                    "banner_image" to (bannerImage ?: "")
+                )
+                
+                val response = apiService.createVendorShop(data)
+                
+                if (response.success && response.data != null) {
+                    Resource.Success(response.data)
+                } else {
+                    Resource.Error(response.message ?: "Failed to create shop")
+                }
+            } catch (e: Exception) {
+                Resource.Error(e.message ?: "Failed to create shop")
+            }
+        }
+    }
+    
     // Get all shops with distance calculation
     suspend fun getAllShops(): Resource<List<Shop>> {
         return withContext(Dispatchers.IO) {
@@ -109,14 +224,14 @@ class ShopRepository(
     ): Resource<Shop> {
         return withContext(Dispatchers.IO) {
             try {
-                val shopData = mapOf(
+                val shopData = mapOf<String, Any>(
                     "name" to name,
                     "address" to address,
                     "phone" to (phone ?: ""),
                     "whatsapp_number" to (whatsappNumber ?: ""),
-                    "latitude" to latitude,
-                    "longitude" to longitude,
-                    "banner_image" to bannerImage
+                    "latitude" to (latitude ?: 0.0),
+                    "longitude" to (longitude ?: 0.0),
+                    "banner_image" to (bannerImage ?: "")
                 )
                 
                 val response = apiService.createShop(shopData)
@@ -145,7 +260,7 @@ class ShopRepository(
     ): Resource<Shop> {
         return withContext(Dispatchers.IO) {
             try {
-                val updateData = mutableMapOf<String, Any?>()
+                val updateData = mutableMapOf<String, Any>()
                 
                 name?.let { updateData["name"] = it }
                 address?.let { updateData["address"] = it }
@@ -205,7 +320,7 @@ class ShopRepository(
     ): Resource<Product> {
         return withContext(Dispatchers.IO) {
             try {
-                val updateData = mutableMapOf<String, Any?>()
+                val updateData = mutableMapOf<String, Any>()
                 
                 price?.let { updateData["price"] = it }
                 stock?.let { updateData["stock"] = it }

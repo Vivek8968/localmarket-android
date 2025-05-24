@@ -32,14 +32,14 @@ class CatalogAdapter(
         
         init {
             binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClicked(getItem(position))
                 }
             }
             
             binding.buttonAdd.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onAddClicked(getItem(position))
                 }

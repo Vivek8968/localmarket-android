@@ -138,7 +138,7 @@ class CatalogFragment : Fragment(), MenuProvider {
         dialog.show()
         
         // Override the positive button to prevent dialog dismissal on validation failure
-        dialog.getButton(MaterialAlertDialogBuilder.BUTTON_POSITIVE).setOnClickListener {
+        dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).setOnClickListener {
             val priceText = binding.editTextPrice.text.toString().trim()
             val stockText = binding.editTextStock.text.toString().trim()
             

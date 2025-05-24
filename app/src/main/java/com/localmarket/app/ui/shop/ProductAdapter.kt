@@ -33,14 +33,14 @@ class ProductAdapter(
         
         init {
             binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onProductClicked(getItem(position))
                 }
             }
             
             binding.buttonAddToCart.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onAddToCartClicked(getItem(position))
                 }
@@ -50,7 +50,7 @@ class ProductAdapter(
         fun bind(product: Product) {
             binding.apply {
                 textViewProductName.text = product.name
-                textViewProductPrice.text = formatPrice(product.price)
+                textViewProductPrice.text = product.price.formatPrice()
                 
                 // Load product image
                 imageViewProduct.loadImage(product.imageUrl)

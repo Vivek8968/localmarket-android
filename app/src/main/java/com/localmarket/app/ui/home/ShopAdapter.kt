@@ -32,14 +32,14 @@ class ShopAdapter(
         
         init {
             binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onShopClicked(getItem(position))
                 }
             }
             
             binding.buttonWhatsApp.setOnClickListener {
-                val position = bindingAdapterPosition
+                val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val shop = getItem(position)
                     shop.whatsappNumber?.let { number ->

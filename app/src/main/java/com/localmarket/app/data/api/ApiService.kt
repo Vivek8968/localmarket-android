@@ -90,4 +90,20 @@ interface ApiService {
     
     @GET("catalog/categories")
     suspend fun getCatalogCategories(): ApiResponse<List<String>>
+    
+    // Vendor Endpoints
+    @GET("vendor/shop")
+    suspend fun getVendorShop(): ApiResponse<Shop>
+    
+    @GET("vendor/products")
+    suspend fun getVendorProducts(): ApiResponse<List<Product>>
+    
+    @POST("vendor/products/add-from-catalog")
+    suspend fun addProductFromCatalog(@Body data: Map<String, Any>): ApiResponse<Product>
+    
+    @PUT("vendor/shop")
+    suspend fun updateVendorShop(@Body data: Map<String, Any>): ApiResponse<Shop>
+    
+    @POST("vendor/shop")
+    suspend fun createVendorShop(@Body data: Map<String, Any>): ApiResponse<Shop>
 }

@@ -13,6 +13,12 @@
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="or">OR</string>
     <string name="send_otp">Send OTP</string>
+    <string name="verify_phone">Verify Phone</string>
+    <string name="otp_sent_message">We have sent an OTP to your phone number</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="resend_otp_in">Resend OTP in %1$d seconds</string>
+    <string name="login_subtitle">Login to access local shops and products</string>
+    <string name="app_logo">App Logo</string>
     
     <!-- Home Screen -->
     <string name="nearby_shops">Nearby Shops</string>
@@ -24,6 +30,7 @@
     <string name="contact_on_whatsapp">Contact on WhatsApp</string>
     <string name="refresh">Refresh</string>
     <string name="share">Share</string>
+    <string name="no_shops_found">No shops found nearby</string>
     
     <!-- Shop Detail -->
     <string name="shop_details">Shop Details</string>
@@ -38,6 +45,8 @@
     <string name="shop_banner">Shop Banner</string>
     <string name="shop_has_no_whatsapp">This shop has no WhatsApp contact</string>
     <string name="whatsapp_not_installed">WhatsApp is not installed on your device</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="no_products_found">No products found</string>
     
     <!-- Product Detail -->
     <string name="add_to_cart">Add to Cart</string>
@@ -103,6 +112,21 @@
     <string name="invalid_price">Invalid price</string>
     <string name="invalid_stock">Invalid stock quantity</string>
     
+    <!-- Filter Categories -->
+    <string name="all">All</string>
+    <string name="electronics">Electronics</string>
+    <string name="clothing">Clothing</string>
+    <string name="home">Home</string>
+    <string name="food">Food</string>
+    <string name="other">Other</string>
+    
+    <!-- Sort Options -->
+    <string name="name_a_to_z">Name: A to Z</string>
+    <string name="name_z_to_a">Name: Z to A</string>
+    
+    <!-- Menu Options -->
+    <string name="logout">Logout</string>
+    
     <!-- Placeholders -->
-    <string name="google_maps_key">AIzaSyDummyKeyForGoogleMapsIntegration</string>
+    <string name="google_maps_key">AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU</string>
 </resources>

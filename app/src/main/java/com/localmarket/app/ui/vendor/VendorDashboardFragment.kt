@@ -78,7 +78,8 @@ class VendorDashboardFragment : Fragment(), MenuProvider {
     private fun setupClickListeners() {
         // Edit shop button
         binding.buttonEditShop.setOnClickListener {
-            val action = VendorDashboardFragmentDirections.actionVendorDashboardFragmentToEditShopFragment()
+            val shopId = (viewModel.vendorShop.value as? Resource.Success)?.data?.id ?: ""
+            val action = VendorDashboardFragmentDirections.actionVendorDashboardFragmentToEditShopFragment(shopId)
             findNavController().navigate(action)
         }
         

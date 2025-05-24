@@ -30,7 +30,7 @@ val networkModule = module {
     // Retrofit
     single {
         Retrofit.Builder()
-            .baseUrl("https://work-1-avziivavtsznhebx.prod-runtime.all-hands.dev:12000/api/") // Using the provided runtime URL
+            .baseUrl("https://work-1-bvemjqssescmnplf.prod-runtime.all-hands.dev:12000/api/") // Using the provided runtime URL
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

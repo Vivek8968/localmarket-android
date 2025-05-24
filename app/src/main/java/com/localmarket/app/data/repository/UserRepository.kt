@@ -34,14 +34,14 @@ class UserRepository(private val apiService: ApiService) {
     ): Resource<User> {
         return withContext(Dispatchers.IO) {
             try {
-                val updateData = mutableMapOf<String, Any?>()
+                val updateMap = mutableMapOf<String, Any>()
                 
-                name?.let { updateData["name"] = it }
-                email?.let { updateData["email"] = it }
-                phone?.let { updateData["phone"] = it }
-                isVendor?.let { updateData["is_vendor"] = it }
+                name?.let { updateMap["name"] = it }
+                email?.let { updateMap["email"] = it }
+                phone?.let { updateMap["phone"] = it }
+                isVendor?.let { updateMap["is_vendor"] = it }
                 
-                val response = apiService.updateUserProfile(updateData)
+                val response = apiService.updateUserProfile(updateMap)
                 
                 if (response.success && response.data != null) {
                     Resource.Success(response.data)

@@ -7,10 +7,15 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.localmarket.app.R
+import java.text.NumberFormat
+import java.util.*
+
+// This extension is defined at the end of the file
 
 // Toast extensions
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -52,6 +57,8 @@ fun ImageView.loadImage(url: String?, placeholder: Int = R.drawable.placeholder_
         .into(this)
 }
 
+// This function was moved to line 110
+
 // WhatsApp intent
 fun Context.openWhatsApp(phoneNumber: String, message: String = "") {
     try {
@@ -84,3 +91,28 @@ fun View.hide() {
 fun View.invisible() {
     visibility = View.INVISIBLE
 }
+
+// Format price to currency format
+fun Double.formatPrice(): String {
+    val format = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    return format.format(this)
+}
+
+fun Int.formatPrice(): String {
+    val format = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    return format.format(this)
+}
+
+// Format distance to readable format
+fun Double.distanceFormatted(): String {
+    return if (this < 1.0) {
+        String.format("%.0f m", this * 1000)
+    } else {
+        String.format("%.1f km", this)
+    }
+}
+
+// Extension property for RecyclerView.ViewHolder to get binding adapter position
+val RecyclerView.ViewHolder.bindingAdapterPosition: Int
+    get() = adapterPosition
+

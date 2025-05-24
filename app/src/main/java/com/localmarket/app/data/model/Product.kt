@@ -17,5 +17,7 @@ data class Product(
     @SerializedName("stock_quantity")
     val stockQuantity: Int? = null,
     @SerializedName("created_at")
-    val createdAt: String
+    val createdAt: String,
+    val specifications: Map<String, String>? = null,
+    val stock: Int = 0
 )
