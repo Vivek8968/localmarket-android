@@ -30,7 +30,7 @@ val networkModule = module {
     // Retrofit
     single {
         Retrofit.Builder()
-            .baseUrl("http://api.localmarket.com/api/") // Will be replaced with actual API URL
+            .baseUrl("http://10.0.2.2:8000/api/") // Using 10.0.2.2 which points to localhost from Android emulator
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -104,5 +104,5 @@
     <string name="invalid_stock">Invalid stock quantity</string>
     
     <!-- Placeholders -->
-    <string name="google_maps_key">YOUR_MAPS_API_KEY</string>
+    <string name="google_maps_key">AIzaSyDummyKeyForGoogleMapsIntegration</string>
 </resources>
