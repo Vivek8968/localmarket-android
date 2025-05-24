@@ -23,38 +23,95 @@ jobs:
         
       - name: Create google-services.json
         run: |
-          mkdir -p app/src/main/assets
-          echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/src/main/assets/google-services.json
+          mkdir -p app/src/main
+          cat > app/google-services.json << 'EOL'
+          {
+            "project_info": {
+              "project_number": "123456789012",
+              "project_id": "localmarket-app",
+              "storage_bucket": "localmarket-app.appspot.com"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:123456789012:android:abcdef1234567890",
+                  "android_client_info": {
+                    "package_name": "com.localmarket.app"
+                  }
+                },
+                "oauth_client": [
+                  {
+                    "client_id": "123456789012-abcdefghijklmnopqrstuvwxyz.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                      "package_name": "com.localmarket.app",
+                      "certificate_hash": "1234567890abcdef1234567890abcdef12345678"
+                    }
+                  },
+                  {
+                    "client_id": "123456789012-abcdefghijklmnopqrstuvwxyz.apps.googleusercontent.com",
+                    "client_type": 3
+                  }
+                ],
+                "api_key": [
+                  {
+                    "current_key": "AIzaSyDummyKeyForLocalMarketApp12345"
+                  }
+                ],
+                "services": {
+                  "appinvite_service": {
+                    "other_platform_oauth_client": [
+                      {
+                        "client_id": "123456789012-abcdefghijklmnopqrstuvwxyz.apps.googleusercontent.com",
+                        "client_type": 3
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOL
+          
+      - name: Create network_security_config.xml
+        run: |
+          mkdir -p app/src/main/res/xml
+          cat > app/src/main/res/xml/network_security_config.xml << 'EOL'
+          <?xml version="1.0" encoding="utf-8"?>
+          <network-security-config>
+              <base-config cleartextTrafficPermitted="false">
+                  <trust-anchors>
+                      <certificates src="system" />
+                  </trust-anchors>
+              </base-config>
+              <domain-config cleartextTrafficPermitted="true">
+                  <domain includeSubdomains="true">api.localmarket.com</domain>
+                  <domain includeSubdomains="true">localhost</domain>
+                  <domain includeSubdomains="true">10.0.2.2</domain>
+              </domain-config>
+          </network-security-config>
+          EOL
           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
         
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
         
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release.apk
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
           
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v1.0.${{ github.run_number }}
-          release_name: Release v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
-          
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/release/app-release.apk
-          asset_name: localmarket-app.apk
-          asset_content_type: application/vnd.android.package-archive
+          files: app/build/outputs/apk/debug/app-debug.apk
+          token: ${{ github.token }}
