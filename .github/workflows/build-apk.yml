@@ -2,12 +2,14 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ fix-app-issues ]
+    branches: [ fix-app-issues, master ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -18,43 +20,27 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
         
-      - name: Create google-services.json
-        run: |
-          mkdir -p app/src/main/assets
-          echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/src/main/assets/google-services.json
-          
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
         
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
         
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release.apk
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
           
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/fix-app-issues'
         with:
           tag_name: v1.0.${{ github.run_number }}
-          release_name: Release v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
-          
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/release/app-release.apk
-          asset_name: localmarket-app.apk
-          asset_content_type: application/vnd.android.package-archive
+          files: app/build/outputs/apk/debug/app-debug.apk
